@@ -1,5 +1,8 @@
 Outputs the current weather conditions
 
+# Documentation links
+- [Yr.no](https://api.met.no/weatherapi/locationforecast/2.0/#/)
+- [Geocoder](https://geocoder.readthedocs.io/)
 
 # To-do
 - [ ] If error status code, use stored xml file
