@@ -4,10 +4,16 @@ import requests
 import xml.etree.ElementTree as ET
 from datetime import datetime
 from dateutil import parser
+import geocoder
 
+# a = geocoder.osm("Linköping")
+latlng = geocoder.ip("me").latlng
+print(latlng)
 
-url = "https://www.yr.no/place/Sweden/%C3%96sterg%C3%B6tland/Link%C3%B6ping/"
-response = requests.get(url)
+url = "https://api.met.no/weatherapi/locationforecast/2.0/compact?lat={}&lon={}".format(latlng[0], latlng[1])
+print(url)
+response = requests.get(url, headers={'User-Agent': "Weather app"})
+print(response.content)
 
 # redirected from search
 if response.url != url:
