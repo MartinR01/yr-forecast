@@ -1,11 +1,17 @@
 #!/usr/bin/python3
-
 import requests
 import geocoder
 import json
+import argparse
 
-# a = geocoder.osm("Linköping")
-latlng = geocoder.ip("me").latlng
+parser = argparse.ArgumentParser()
+parser.add_argument("-l", "--location", help="Location (address) to get. Defaults to your IP address")
+args = parser.parse_args()
+
+if args.location is None:
+    latlng = geocoder.ip("me").latlng
+else:
+    latlng = geocoder.osm(args.location).latlng
 
 url = "https://api.met.no/weatherapi/locationforecast/2.0/compact?lat={}&lon={}".format(latlng[0], latlng[1])
 
